@@ -14,15 +14,3 @@ def get_mask_account(account_number: str) -> str:
     где X — это цифра номера.
     """
     return '**' + account_number[-4:]
-
-def mask_account_card(card_or_acc_number: str) -> str:
-    """
-
-    """
-    pass
-
-def get_data(raw_date_str: str) -> str:
-    """
-    Функция принимает на вход строку и отдаетрезультат в формате dd.mm.yyyy
-    """
-    return raw_date_str
