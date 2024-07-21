@@ -11,7 +11,7 @@ def get_mask_card_number(card_number: str) -> str:
     if not card_number:
         return ""
 
-    pattern = r"[^0-9]"  # регулярное выражение для поиска нецифровых символов
+    pattern = r"[\D]"  # регулярное выражение для поиска нецифровых символов
     if re.findall(pattern, card_number):
         raise ValueError("Номер карты должен состоять только из цифр.")
 
@@ -30,4 +30,12 @@ def get_mask_account(account_number: str) -> str:
     """
     if not account_number:
         return ""
+
+    pattern = r"[\D]"  # регулярное выражение для поиска нецифровых символов
+    if re.findall(pattern, account_number):
+        raise ValueError("Номер счета должен состоять только из цифр.")
+
+    if len(account_number) != 20:
+        raise ValueError("Номер счета должен состоять из 20 цифр.")
+
     return "**" + account_number[-4:]

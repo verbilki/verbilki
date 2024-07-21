@@ -1,3 +1,4 @@
+import re
 from datetime import datetime
 
 from src.masks import get_mask_account, get_mask_card_number
@@ -29,9 +30,16 @@ def mask_account_card(card_or_acc_number: str) -> str:
         )
         raise ValueError(exception_msg)
 
+    pattern = r"[\D]"  # регулярное выражение для поиска нецифровых символов
+    nondigits = re.findall(pattern, card_or_acc_number[first_digit_pos:])
+
     if card_or_acc_number[: first_digit_pos - 1] == "Счет":
+        if nondigits:
+            raise ValueError("Номер счета должен состоять только из цифр.")
         return card_or_acc_number[:first_digit_pos] + get_mask_account(card_or_acc_number[first_digit_pos:])
     else:
+        if nondigits:
+            raise ValueError("Номер карты должен состоять только из цифр.")
         return card_or_acc_number[:first_digit_pos] + get_mask_card_number(card_or_acc_number[first_digit_pos:])
 
 
