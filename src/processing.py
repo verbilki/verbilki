@@ -1,3 +1,4 @@
+from datetime import datetime
 from typing import Any
 
 
@@ -12,7 +13,7 @@ def filter_by_state(data: list[dict[str, Any]], state: str = "EXECUTED") -> list
     return [item for item in data if item["state"] == state]
 
 
-def poetry add --group dev pytest(data: list[dict[str, Any]], is_sort_order: bool = True) -> list[dict[str, Any]]:
+def sort_by_date(data: list[dict[str, Any]], is_sort_order: bool = True) -> list[dict[str, Any]]:
     """
     :Назначение функции: сортировка списка словарей банковских операций по дате операции
     :param data: список словарей банковских операций для фильтрации.
@@ -20,4 +21,13 @@ def poetry add --group dev pytest(data: list[dict[str, Any]], is_sort_order: boo
                           (True (по умолчанию) - по убыванию дат; False - по возрастанию дат).
     :return: отсортированный список словарей
     """
+    for d in data:
+        if "date" in d:
+            try:
+                datetime.strptime(d["date"], "%Y-%m-%dT%H:%M:%S.%f")
+            except ValueError:
+                raise ValueError("Значение ключа 'date' не соответствует формату '%Y-%m-%dT%H:%M:%S.%f'.")
+        else:
+            raise KeyError("Ключ 'date' отсутствует в одном из словарей.")
+
     return sorted(data, key=lambda item: item["date"], reverse=is_sort_order)
