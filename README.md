@@ -1,8 +1,9 @@
 <h2 align="center">
-Домашнее задание по уроку 10.1
+Домашние Задания по курсу Python на платформе SkyPro (поток 40.0)
 </h2>
 
-Этот проект представляет собой Домашнее Задание ученика Олега Жадана (поток Prof 40.0) по уроку 10.1.
+Этот проект представляет собой Домашние Задания по курсу Python на платформе SkyPro
+ученика Олега Жадана (поток Prof 40.0).
 
 ## Инструкция по установке
 
@@ -36,7 +37,7 @@ source ./venv/bin/activate
 ```
 
 3. Установить Poetry.
-4. Установить линтер flake8 и форматтеры black, isort, mypy на основании файла конфигурации pyproject.toml.
+4. Установить линтеры (flake8, mypy), форматтеры (black, isort) на основании файла конфигурации pyproject.toml.
 
 ```bash
 poetry install
@@ -129,10 +130,10 @@ transactions (conftest.py): A list of dictionaries representing transactions.
 currency (optional): The currency code to filter by. Defaults to "USD".
 Return: An iterator of filtered transaction dictionaries.
 Пример использования:
-```python
+'''
 from src.generators import filter_by_currency
 
-# Создаем список транзакций
+Создаем список транзакций
 transactions = [
     {
         "id": 1,
@@ -153,11 +154,15 @@ transactions = [
         "to": "Счет 1234567890",
     },
 ]
+'''
 
-# Фильтруем транзакции по валюте
-usd_transactions = filter_by_currency(transactions, "USD")
+#### Фильтруем транзакции по валюте
 
-# Выводим транзакции
+'''usd_transactions = filter_by_currency(transactions, "USD")'''
+
+#### Выводим транзакции
+
+'''
 for transaction in usd_transactions:
     print(transaction)
 '''
@@ -169,12 +174,13 @@ Parameters:
 transactions (conftest.py): A list of dictionaries representing transactions.
 Return: An iterator of transaction descriptions.
 
-## Пример использования функции transaction_descriptions
-
+#### Пример использования функции transaction_descriptions
 ```python
 from src.generators import transaction_descriptions
 
-# Создаем список транзакций
+Создаем
+список
+транзакций
 transactions = [
     {
         "id": 1,
@@ -195,14 +201,20 @@ transactions = [
         "to": "Счет 1234567890",
     },
 ]
+```
 
-# Получаем описания транзакций
+#### Получаем описания транзакций
+
+```python
 transaction_descriptions = transaction_descriptions(transactions)
+```
 
-# Выводим описания
+#### Выводим описания
+
+```python
 for description in transaction_descriptions:
     print(description)
-'''
+```
 
 #### Генераторная функция card_number_generator 
 card_number_generator(start: int, end: int) -> Iterator[str]:
@@ -212,22 +224,94 @@ start: The starting value of the range.
 end: The ending value of the range.
 Return: An iterator of formatted card numbers.
 
-### Пример использования функции card_number_generator
-
+#### Пример использования функции card_number_generator
 ```python
 from src.generators import card_number_generator
 
-# Создаем генератор карточных номеров
+Создаем
+генератор
+карточных
+номеров
 card_number_generator = card_number_generator(234567890123456, 1234567890123465)
 
-# Генерируем 10 карточных номеров
+Генерируем
+10
+карточных
+номеров
 card_numbers = [next(card_number_generator) for _ in range(10)]
 
-# Выводим карточные номера
+Выводим
+номера
+карт
 for card_number in card_numbers:
     print(card_number)
-'''
+```
 
+### Функция-декоратор log
+
+log(filename: str = None) -> Callable[[Callable[P, R]], Callable[[P.args, P.kwargs], R]]
+Purpose: Logs the execution of a function with optional filename argument.
+Parameters:
+filename (optional): The filename to log to. Defaults to None.
+Return: A decorator function that logs the execution of a wrapped function.
+Пример использования:
+
+```python
+from src.decorators import log
+
+
+@log(filename="logs/test.log")
+def add(a: tuple[int]) -> int:
+    return sum(a)
+```
+
+#### Тесты для функции-декоратора log
+
+##### Функция test_log_decorator_basic
+
+Test the basic functionality of the log decorator.
+
+This test case verifies that the log decorator correctly logs the execution of the add function and returns the expected
+result.
+
+Parameters: None Returns: None Raises: AssertionError: If the result of the add function is not equal to the expected
+value.
+
+Пример использования:
+
+```python
+from src.decorators import log
+
+
+def add(a: tuple[int]) -> int:
+    return sum(a)
+
+
+add = log()(add)
+result_1 = add((1, 2))
+```
+
+##### Функция test_log_decorator_filename
+
+Test the functionality of the log decorator with a specified filename.
+This test case verifies that the log decorator correctly logs the execution of the add function with the specified
+filename and returns the expected result. It also checks if the log file contains the expected log messages.
+
+Parameters: None Returns: None Raises: AssertionError: If the result of the add function is not equal to the expected
+value. AssertionError: If the log file does not contain the expected log messages.
+
+Пример использования:
+
+```python
+from src.decorators import log
+
+
+def add(a: tuple[int]) -> int:
+    return sum(a)
+
+
+add = log(filename="logs/test.log")(add)
+assert add((1, 2)) == 3
+```
 ## Лицензия
-
 [GPL 3.0](https://www.gnu.org/licenses/gpl-3.0.html#license-text)
