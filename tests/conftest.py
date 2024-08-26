@@ -5,72 +5,72 @@ import pytest
 
 @pytest.fixture
 def sample_transactions() -> list[dict[str, Any]]:
-  """
-  Provides a list of test transactions for use in unit tests.
+    """
+    Provides a list of test transactions for use in unit tests.
 
-  Returns:
-      list[dict[str, any]]: A list of dictionaries, each representing a transaction with the following keys:
-          - id (int): The unique identifier of the transaction.
-          - state (str): The state of the transaction (e.g., "EXECUTED", "CANCELED").
-          - date (str): The date and time when the transaction occurred in ISO 8601 format.
-          - operationAmount (dict): A dictionary containing the amount and currency of the transaction:
-              - amount (str): The amount of the transaction.
-              - currency (dict): A dictionary containing the currency details:
-                  - name (str): The name of the currency.
-                  - code (str): The code of the currency.
-          - description (str): A description of the transaction.
-          - from (str): The source account or card of the transaction.
-          - to (str): The destination account or card of the transaction.
-  """
-  return [
-    {
-      "id": 939719570,
-      "state": "EXECUTED",
-      "date": "2018-06-30T02:08:58.425572",
-      "operationAmount": {"amount": "9824.07", "currency": {"name": "USD", "code": "USD"}},
-      "description": "Перевод организации",
-      "from": "Счет 75106830613657916952",
-      "to": "Счет 11776614605963066702",
-    },
-    {
-      "id": 142264268,
-      "state": "EXECUTED",
-      "date": "2019-04-04T23:20:05.206878",
-      "operationAmount": {"amount": "79114.93", "currency": {"name": "USD", "code": "USD"}},
-      "description": "Перевод со счета на счет",
-      "from": "Счет 19708645243227258542",
-      "to": "Счет 75651667383060284188",
-    },
-    {
-      "id": 873106923,
-      "state": "EXECUTED",
-      "date": "2019-03-23T01:09:46.296404",
-      "operationAmount": {"amount": "43318.34", "currency": {"name": "руб.", "code": "RUB"}},
-      "description": "Перевод со счета на счет",
-      "from": "Счет 44812258784861134719",
-      "to": "Счет 74489636417521191160",
-    },
-    {
-      "id": 895315941,
-      "state": "EXECUTED",
-      "date": "2018-08-19T04:27:37.904916",
-      "operationAmount": {"amount": "56883.54", "currency": {"name": "USD", "code": "USD"}},
-      "description": "Перевод с карты на карту",
-      "from": "Visa Classic 6831982476737658",
-      "to": "Visa Platinum 8990922113665229",
-    },
-    {
-      "id": 594226727,
-      "state": "CANCELED",
-      "date": "2018-09-12T21:27:25.241689",
-      "operationAmount": {"amount": "67314.70", "currency": {"name": "руб.", "code": "RUB"}},
-      "description": "Перевод организации",
-      "from": "Visa Platinum 1246377376343588",
-      "to": "Счет 14211924144426031657",
-    },
-  ]
+    Returns:
+        list[dict[str, any]]: A list of dictionaries, each representing a transaction with the following keys:
+            - id (int): The unique identifier of the transaction.
+            - state (str): The state of the transaction (e.g., "EXECUTED", "CANCELED").
+            - date (str): The date and time when the transaction occurred in ISO 8601 format.
+            - operationAmount (dict): A dictionary containing the amount and currency of the transaction:
+                - amount (str): The amount of the transaction.
+                - currency (dict): A dictionary containing the currency details:
+                    - name (str): The name of the currency.
+                    - code (str): The code of the currency.
+            - description (str): A description of the transaction.
+            - from (str): The source account or card of the transaction.
+            - to (str): The destination account or card of the transaction.
+    """
+    return [
+        {
+            "id": 939719570,
+            "state": "EXECUTED",
+            "date": "2018-06-30T02:08:58.425572",
+            "operationAmount": {"amount": "9824.07", "currency": {"name": "USD", "code": "USD"}},
+            "description": "Перевод организации",
+            "from": "Счет 75106830613657916952",
+            "to": "Счет 11776614605963066702",
+        },
+        {
+            "id": 142264268,
+            "state": "EXECUTED",
+            "date": "2019-04-04T23:20:05.206878",
+            "operationAmount": {"amount": "79114.93", "currency": {"name": "USD", "code": "USD"}},
+            "description": "Перевод со счета на счет",
+            "from": "Счет 19708645243227258542",
+            "to": "Счет 75651667383060284188",
+        },
+        {
+            "id": 873106923,
+            "state": "EXECUTED",
+            "date": "2019-03-23T01:09:46.296404",
+            "operationAmount": {"amount": "43318.34", "currency": {"name": "руб.", "code": "RUB"}},
+            "description": "Перевод со счета на счет",
+            "from": "Счет 44812258784861134719",
+            "to": "Счет 74489636417521191160",
+        },
+        {
+            "id": 895315941,
+            "state": "EXECUTED",
+            "date": "2018-08-19T04:27:37.904916",
+            "operationAmount": {"amount": "56883.54", "currency": {"name": "USD", "code": "USD"}},
+            "description": "Перевод с карты на карту",
+            "from": "Visa Classic 6831982476737658",
+            "to": "Visa Platinum 8990922113665229",
+        },
+        {
+            "id": 594226727,
+            "state": "CANCELED",
+            "date": "2018-09-12T21:27:25.241689",
+            "operationAmount": {"amount": "67314.70", "currency": {"name": "руб.", "code": "RUB"}},
+            "description": "Перевод организации",
+            "from": "Visa Platinum 1246377376343588",
+            "to": "Счет 14211924144426031657",
+        },
+    ]
 
 
 @pytest.fixture
 def card_number_range() -> tuple[int, int]:
-  return 1234567890123456, 1234567890123459
+    return 1234567890123456, 1234567890123459
